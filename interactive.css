@@ -11,7 +11,19 @@
     --error-color: #e74c3c;
     --bg-color: #ffffff;
     --text-color: #000000;
+    --section-bg: #f9f9f9;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --section-bg: #2d2d2d;
+    --card-bg: #242424;
+    --border-color: #404040;
 }
 
 /* Fade-in animation for sections */
@@ -93,6 +105,10 @@ section.active,
 
 .theme-toggle-btn:active {
     transform: scale(0.95);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 /* Scroll progress bar animation */
@@ -272,15 +288,100 @@ html {
     :root {
         --bg-color: #1a1a1a;
         --text-color: #ffffff;
+        --section-bg: #2d2d2d;
+        --card-bg: #242424;
+        --border-color: #404040;
     }
+}
 
-    .header.scrolled {
-        background: rgba(26, 26, 26, 0.95);
-    }
+/* Apply background color to body */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    button:hover {
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-    }
+/* Dark mode specific styles */
+[data-theme="dark"] body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] p,
+[data-theme="dark"] span {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .header {
+    background-color: rgba(45, 45, 45, 0.95);
+    color: #ffffff;
+}
+
+[data-theme="dark"] .header.scrolled {
+    background: rgba(26, 26, 26, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] section,
+[data-theme="dark"] .light,
+[data-theme="dark"] .dark,
+[data-theme="dark"] .skill,
+[data-theme="dark"] .certified,
+[data-theme="dark"] .intro,
+[data-theme="dark"] .myself,
+[data-theme="dark"] .education,
+[data-theme="dark"] .contactme {
+    background-color: var(--section-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .service-wrap,
+[data-theme="dark"] .projects-container {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #888;
+}
+
+[data-theme="dark"] button:hover {
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+[data-theme="dark"] .service-header,
+[data-theme="dark"] .projects-header {
+    color: #ffffff;
+}
+
+[data-theme="dark"] a {
+    color: #667eea;
+}
+
+[data-theme="dark"] .back-home-btn {
+    color: #667eea;
+    border-color: #667eea;
+    background: transparent;
+}
+
+[data-theme="dark"] .back-home-btn:hover {
+    background: #667eea;
+    color: #1a1a1a;
 }
 
 /* Print styles (for accessibility) */

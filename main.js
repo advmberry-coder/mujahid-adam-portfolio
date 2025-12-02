@@ -122,43 +122,80 @@ class AnimationObserver {
 // Theme Toggle (Dark/Light mode)
 class ThemeToggle {
     constructor() {
-        this.theme = localStorage.getItem('theme') || 'light';
+        this.theme = localStorage.getItem('theme') || this.getSystemTheme();
         this.init();
+    }
+
+    getSystemTheme() {
+        // Check if system prefers dark mode
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
     init() {
         this.applyTheme(this.theme);
         this.createToggleButton();
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                this.theme = e.matches ? 'dark' : 'light';
+                this.applyTheme(this.theme);
+                this.updateToggleButton();
+            }
+        });
     }
 
     createToggleButton() {
         const toggleBtn = document.createElement('button');
         toggleBtn.id = 'theme-toggle';
         toggleBtn.className = 'theme-toggle-btn';
-        toggleBtn.textContent = this.theme === 'light' ? '🌙' : '☀️';
-        toggleBtn.title = `Switch to ${this.theme === 'light' ? 'dark' : 'light'} mode`;
+        this.updateToggleButtonContent(toggleBtn);
         
         toggleBtn.addEventListener('click', () => this.toggleTheme());
         
         document.body.appendChild(toggleBtn);
     }
 
+    updateToggleButton() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+            this.updateToggleButtonContent(toggleBtn);
+        }
+    }
+
+    updateToggleButtonContent(btn) {
+        btn.textContent = this.theme === 'light' ? '🌙' : '☀️';
+        btn.title = `Switch to ${this.theme === 'light' ? 'dark' : 'light'} mode`;
+    }
+
     toggleTheme() {
         this.theme = this.theme === 'light' ? 'dark' : 'light';
         this.applyTheme(this.theme);
         localStorage.setItem('theme', this.theme);
-        
-        const toggleBtn = document.getElementById('theme-toggle');
-        toggleBtn.textContent = this.theme === 'light' ? '🌙' : '☀️';
+        this.updateToggleButton();
     }
 
     applyTheme(theme) {
+        const root = document.documentElement;
+        const body = document.body;
+        
         if (theme === 'dark') {
-            document.documentElement.style.setProperty('--bg-color', '#1a1a1a');
-            document.documentElement.style.setProperty('--text-color', '#ffffff');
+            root.setAttribute('data-theme', 'dark');
+            body.style.backgroundColor = '#1a1a1a';
+            body.style.color = '#ffffff';
+            root.style.setProperty('--bg-color', '#1a1a1a');
+            root.style.setProperty('--text-color', '#ffffff');
+            root.style.setProperty('--section-bg', '#2d2d2d');
+            root.style.setProperty('--card-bg', '#242424');
+            root.style.setProperty('--border-color', '#404040');
         } else {
-            document.documentElement.style.setProperty('--bg-color', '#ffffff');
-            document.documentElement.style.setProperty('--text-color', '#000000');
+            root.setAttribute('data-theme', 'light');
+            body.style.backgroundColor = '#ffffff';
+            body.style.color = '#000000';
+            root.style.setProperty('--bg-color', '#ffffff');
+            root.style.setProperty('--text-color', '#000000');
+            root.style.setProperty('--section-bg', '#f9f9f9');
+            root.style.setProperty('--card-bg', '#ffffff');
+            root.style.setProperty('--border-color', '#e0e0e0');
         }
     }
 }
