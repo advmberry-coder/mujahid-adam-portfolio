@@ -19,16 +19,17 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="interactive.css">
     
     <title>My Projects - Mujahid Adam</title>
 </head>
 <body>
 <div class="projects-container">
-    <a href="homepage.html" class="back-home-btn">← Back to Home</a>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
     <header class="projects-header">
         <h1>My Projects</h1>
         <p class="subtitle">Exploring data, building ML models, and creating insights</p>
-        <a href="homepage.html" class="back-link">← Back to Home</a>
+        <a href="index.html" class="back-link">← Back to Home</a>
     </header>
 
     <main class="projects-grid">
@@ -158,5 +159,84 @@
         <p class="footer-text">© 2025 Mujahid Adam. All rights reserved.</p>
     </footer>
 </div>
+
+<!-- Load JavaScript for interactivity -->
+<script src="main.js"></script>
+
+<!-- Project filtering and sorting functionality -->
+<script>
+// Add project filtering
+class ProjectFilter {
+    constructor() {
+        this.cards = document.querySelectorAll('.project-card');
+        this.createFilterButtons();
+    }
+
+    createFilterButtons() {
+        const header = document.querySelector('.projects-header');
+        const filterContainer = document.createElement('div');
+        filterContainer.className = 'filter-container';
+        filterContainer.style.cssText = `
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        `;
+
+        const categories = new Set();
+        this.cards.forEach(card => {
+            const badge = card.querySelector('.project-badge');
+            if (badge) categories.add(badge.textContent);
+        });
+
+        // Add "All" button
+        const allBtn = this.createFilterBtn('All', () => {
+            this.cards.forEach(card => card.style.display = 'block');
+        });
+        filterContainer.appendChild(allBtn);
+
+        // Add category buttons
+        categories.forEach(category => {
+            const btn = this.createFilterBtn(category, () => {
+                this.cards.forEach(card => {
+                    const badge = card.querySelector('.project-badge');
+                    card.style.display = badge?.textContent === category ? 'block' : 'none';
+                });
+            });
+            filterContainer.appendChild(btn);
+        });
+
+        header.appendChild(filterContainer);
+    }
+
+    createFilterBtn(text, onClick) {
+        const btn = document.createElement('button');
+        btn.textContent = text;
+        btn.style.cssText = `
+            padding: 8px 16px;
+            border: 1px solid #667eea;
+            border-radius: 20px;
+            background: transparent;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        `;
+        btn.addEventListener('click', onClick);
+        btn.addEventListener('mouseenter', () => {
+            btn.style.background = '#667eea';
+            btn.style.color = 'white';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.background = 'transparent';
+            btn.style.color = '#667eea';
+        });
+        return btn;
+    }
+}
+
+new ProjectFilter();
+</script>
 </body>
+</html>
 </html>

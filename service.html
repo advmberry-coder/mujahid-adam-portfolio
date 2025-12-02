@@ -25,15 +25,14 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="service.css">
+    <link rel="stylesheet" href="interactive.css">
     
     <title>Services — Mujahid Adam</title>
 </head>
 <body>
-    <center>
-        <h1>My Services</h1>
-    </center>
+h1>
 <main class="service-wrap">
-    <a href="homepage.html" class="back-home-btn">← Back to Home</a>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
     <header class="service-header">
         <h1>Professional Services</h1>
         <p class="subtitle">Analytics, ML prototyping, dashboards and consulting for businesses</p>
@@ -97,11 +96,130 @@
         </div>
     </section>
 
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <h2>Send me a Message</h2>
+        <form class="contact-form" id="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="service">Service Interest</label>
+                <select id="service" name="service" required>
+                    <option value="">Select a service</option>
+                    <option value="analytics">Data Analytics</option>
+                    <option value="ml">Machine Learning</option>
+                    <option value="dashboard">Dashboard Development</option>
+                    <option value="consulting">Consulting</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
     <footer class="service-footer">
         <p>Prefer a proposal or invoice? Mention it in your message and I will follow up.</p>
         <p class="muted">© Mujahid Adam — Available for freelance and contract work</p>
     </footer>
 </main>
 
+<!-- Load JavaScript for interactivity -->
+<script src="main.js"></script>
+
+<!-- Service page specific interactivity -->
+<script>
+// Add smooth transitions to service cards
+class ServiceInteractivity {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.addCardHoverEffects();
+        this.addFormInteractivity();
+    }
+
+    addCardHoverEffects() {
+        const cards = document.querySelectorAll('.service-card, .icon-link');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
+    addFormInteractivity() {
+        const form = document.getElementById('contact-form');
+        if (!form) return;
+
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.style.borderColor = '#667eea';
+                input.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+            });
+            input.addEventListener('blur', () => {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleFormSubmit(form);
+        });
+    }
+
+    handleFormSubmit(form) {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        console.log('Form submitted:', data);
+        
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease-out;
+        `;
+        successMsg.innerHTML = `
+            <h3 style="margin: 0 0 10px 0;">✓ Message Sent!</h3>
+            <p style="margin: 0; font-size: 14px;">Thank you for reaching out. I'll get back to you soon.</p>
+        `;
+        
+        document.body.appendChild(successMsg);
+        form.reset();
+        
+        setTimeout(() => successMsg.remove(), 5000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new ServiceInteractivity();
+});
+</script>
+
 </body>
+</html>
 </html>
