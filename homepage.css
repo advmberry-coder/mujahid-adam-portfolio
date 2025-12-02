@@ -1,0 +1,484 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Header and Navigation */
+h1 {
+    color: #2c3e50;
+    margin: 20px 0 10px 0;
+    font-size: 2.5rem;
+}
+
+h2 {
+    color: #34495e;
+    margin: 20px 0 15px 0;
+    font-size: 2rem;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #7f8c8d;
+    font-size: 1.3rem;
+    margin: 10px 0;
+}
+
+p {
+    color: #555;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Fit Container - to allow it to fit within the viewport */
+#fit {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 15px 0 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Header (centered at top) */
+.header {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.96);
+    color: #2c3e50;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.header h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+}
+
+/* Top-left button */
+.top-left-btn {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 1001;
+    background: rgba(52, 152, 219, 0.1);
+    color: #2c3e50;
+    border: 1.5px solid #3498db;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.top-left-btn:hover {
+    background: rgba(52, 152, 219, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.15);
+}
+
+/* Container and Layout */
+body > * {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Dark Theme Section */
+.dark {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.dark button:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(52, 152, 219, 0.3);
+}
+
+.dark button:active {
+    transform: translateY(-1px);
+}
+
+/* Introduction Section */
+.intro {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 50px 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.intro h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.intro h3 {
+    color: #ecf0f1;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+qoute {
+    display: block;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    color: #ecf0f1;
+    border-left: 4px solid #fff;
+    padding-left: 15px;
+}
+
+/* Video styles */
+.video-wrap {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    background: #000;
+}
+
+/* About Me Section */
+.myself {
+    background-color: #ecf0f1;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid #3498db;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.myself h2 {
+    border-bottom-color: #3498db;
+}
+
+/* Skills Section */
+.skill {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-top: 3px solid #e74c3c;
+}
+
+.skill h2 {
+    border-bottom-color: #e74c3c;
+}
+
+.skill ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.skill li {
+    padding: 12px 0;
+    border-bottom: 1px solid #ecf0f1;
+    color: #555;
+}
+
+.skill li:last-child {
+    border-bottom: none;
+}
+
+.skill b {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Light Theme Section */
+.light {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-right: 5px solid #27ae60;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.light h1 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+}
+
+.light p {
+    color: #34495e;
+    padding: 8px 0;
+    font-weight: 500;
+}
+
+/* Certifications Section */
+.certified {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+    border-left: 5px solid #f39c12;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.certified h1 {
+    color: #d68910;
+    font-size: 2rem;
+}
+
+.certified p {
+    color: #6c5ce7;
+    padding: 8px 0;
+    font-weight: 500;
+}
+
+/* Education Section */
+.education {
+    background: linear-gradient(135deg, #d5f4e6 0%, #a8e6d9 100%);
+    border-left: 5px solid #27ae60;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.education h2 {
+    color: #27ae60;
+    border-bottom-color: #27ae60;
+}
+
+.education p {
+    color: #16a085;
+    padding: 8px 0;
+    font-weight: 500;
+}
+
+/* Contact Section */
+.contactme {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.contactme h2 {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.contactme p {
+    color: #ecf0f1;
+    font-size: 1rem;
+}
+
+.contactme span {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+contact {
+    display: block;
+    margin-top: 20px;
+}
+
+.contactme a {
+    color: #f39c12;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.contactme a:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Projects Section */
+h1 {
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .intro {
+        padding: 30px 15px;
+    }
+
+    .intro h1 {
+        font-size: 2.2rem;
+    }
+
+    .intro h3 {
+        font-size: 1.2rem;
+    }
+
+    .dark button {
+        display: block;
+        width: 90%;
+        margin: 8px auto;
+    }
+
+    .hero-video {
+        max-width: 95%;
+    }
+
+    body > * {
+        padding: 15px;
+    }
+
+    .header {
+        min-width: 180px;
+        padding: 8px 12px;
+    }
+
+    .header h1 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .intro h1 {
+        font-size: 1.8rem;
+    }
+
+    .intro h3 {
+        font-size: 1.1rem;
+    }
+
+    .intro {
+        padding: 20px 12px;
+    }
+
+    #fit {
+        padding: 70px 10px 0 10px;
+    }
+
+    body > * {
+        padding: 10px;
+    }
+
+    .dark {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .dark button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .header {
+        min-width: 160px;
+        padding: 6px 10px;
+        top: 10px;
+    }
+
+    .header h1 {
+        font-size: 0.9rem;
+    }
+
+    .top-left-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .skill,
+    .light,
+    .certified,
+    .education,
+    .contactme {
+        padding: 20px;
+        margin: 15px 0;
+    }
+}
